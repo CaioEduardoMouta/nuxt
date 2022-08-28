@@ -11,6 +11,22 @@
 
             <br><br>
 
+
+            <div v-if="$fetchState.peding">
+                Carregando...
+            </div>
+
+            <div v-else>
+                <div
+                v-for="service in services" :key="service.id"
+                class="border-b border-gray-400 py-4"
+                >
+                {{ service.username}}
+                </div>
+            </div>
+
+           
+
             <NuxtChild />
         
     </div>
@@ -20,17 +36,42 @@
 export default {
   name: '',
 
+    head() {
+        return {
+            title: this.title,
+            meta: [
+            { hid: 'description', name: 'description', content: 'Minha Descrição do Serviço' },
+            ],
+            bodyAttrs: {
+                class: 'bg-gray-400'
+            }       
+        }
+    },
 
     data() {
         return{
-
+            title: '',
+            services:[]
         };
         
     },
-    methods: {},
-}
+
+    async fetch() {
+        this.services = await this.$axios.$get('https://jsonplaceholder.typicode.com/users?_limit=3') 
+       
+    },
+
+    created() {
+        this.getTitle();
+    },
+
+    methods: {
+        getTitle() {
+            setTimeout(() => {
+                this.title = 'Serviços'
+            }, 3000)
+        }
+    },
+};
 </script>
 
-<style>
-
-</style>

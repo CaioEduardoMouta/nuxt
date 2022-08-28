@@ -3,18 +3,22 @@ export default {
   head: {
     title: 'Nuxt',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'pt-br'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'Minha Descrição' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      {src: 'cdn/script.js'}
     ]
   },
+
 
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -23,6 +27,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '@/plugins/my-plugin'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
