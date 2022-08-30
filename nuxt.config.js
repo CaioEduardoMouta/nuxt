@@ -1,4 +1,5 @@
 export default {
+    target: 'static',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Nuxt',
@@ -19,6 +20,13 @@ export default {
     ]
   },
 
+  publicRuntimeConfig: {
+    youtube_api_key: process.env.YOUTUBE_API_KEY
+  },
+  privateRuntimeConfig: {
+    facebook_api_key: process.env.FACEBOOK_API_KEY
+  },
+
 
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -27,7 +35,10 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/my-plugin'
+    '@/plugins/my-plugin',
+    '@/plugins/dayjs',
+    '@/plugins/vtooltip',
+    '@/plugins/axios',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

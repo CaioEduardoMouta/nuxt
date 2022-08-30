@@ -1,3 +1,3 @@
-export default (context) => {
-    console.log(context)
+export default (context, inject) => {
+    inject('name',(name) => `Olá ${name}`)
 }
