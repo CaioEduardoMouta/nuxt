@@ -4,6 +4,12 @@ export default {
     },
 
     deleteCategory(context, id) {
-        return this.$axios.$delete(`ategories/${id}`);
-    }
+        return this.$axios.$delete(`categories/${id}`);
+    },
+    updateCategory(context, { id, data }) {
+        return this.$axios.$path(`categories/${id}`, data)
+    },
+    addCategory(context, data) {
+        return this.$axios.$post('categories',data)
+    },
 }
