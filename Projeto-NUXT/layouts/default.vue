@@ -4,7 +4,7 @@
       <nav>
         <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
           <div class="relative flex items-center justify-between h-16">
-            <div class="flex-1 flex items-center items-stretch justify-start">
+            <div class="flex-1 flex  justify-start">
               <div class="flex-shrink-0 flex items-center">
                 <img class="block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow">
               </div>
