@@ -5,4 +5,7 @@ export default {
     addTransaction(context, data) {
         return this.$axios.$post('transaction',data)
     },
+    updateTransaction(context, {id, data}) {
+        return this.$axios.$post(`transaction/${id}`,data)
+    },
 }

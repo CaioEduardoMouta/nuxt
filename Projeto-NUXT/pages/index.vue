@@ -48,40 +48,12 @@
               </div>
 
               <div class="space-y-3">
-                <div 
+                <Transaction 
                 v-for="transaction in group"
                 :key="transaction.id"
-                class="flex items-center px-5 py-6 bg-white rounded-lg shadow"
-                >
-                  
-                <div class="flex items-center space-x-5">
-                    <div>
-                      <div>
-                        <div class="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">
-                          {{ transaction.category.name}}
-                        </div>
-                      </div>
-
-                      <div class="mt-1.5">
-                        {{ transaction.description}}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="flex items-center space-x-4 ml-auto">
-                    <div class="flex items-center">
-                      <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
-
-                      <div class="font-bold">
-                        {{ transaction.amount }}
-                      </div>
-                    </div>
-
-                    <button>
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                  </div>
-                </div>
+                :transaction="transaction"
+                />
+                
               </div>
             </div>
           </div>
@@ -92,14 +64,15 @@
 </template>
 
 <script>
-import { groudBy, orderBy } from 'loadash';
+import { groupBy, orderBy } from 'loadash';
 import TransactionAdd from '~/components/Transactions/TransactionAdd.vue';
 import AppButton from '~/components/Ui/AppButton';
 import AppFormInput from '~/components/Ui/AppFormInput';
 import AppFormLabel from '~/components/Ui/AppFormLabel';
 import AppFormSelect from '~/components/Ui/AppFormSelect';
 import TransactionAdd from '~/components/Transactions/TransactionAdd.vue';
-
+import Transaction from '~/components/Transactions/Transaction.vue';
+import Transaction from '~/components/Transactions/Transaction.vue';
 export default {
   name: 'IndexPage',
 
@@ -109,8 +82,9 @@ export default {
     AppFormInput,
     AppFormLabel,
     AppFormSelect,
-    TransactionAdd
-  },
+    Transaction,
+    Transaction
+},
 
   async asyncData({ store }) {
     return {
