@@ -52,6 +52,7 @@
                 v-for="transaction in group"
                 :key="transaction.id"
                 :transaction="transaction"
+                @update="onUpdate"
                 />
                 
               </div>
@@ -112,6 +113,10 @@ export default {
 
     afterAdd(transaction) {
       this.transactions.push(transaction)
+    },
+    onUpdate(transaction) {
+      const idx = this.transactions.findIndex(o => o.id === transaction.id);
+      this.transactions.splice(idx, 1, transaction)
     }
   },
 }

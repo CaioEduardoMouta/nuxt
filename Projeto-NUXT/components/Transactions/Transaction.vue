@@ -19,6 +19,13 @@
 
                   <div class="flex items-center space-x-4 ml-auto">
                     <div class="flex items-center">
+                      <svg v-if="transaction.amount > 0"
+                      class="w-4 h-4 text-green-600"
+                       fill="none"
+                       stroke="currentColor" 
+                       viewBox="0 0 24 24" 
+                       xmlns="http://www.w3.org/2000/svg"></svg>
+                      
                       <svg class="w-4 h-4 text-red-600"
                        fill="none"
                        stroke="currentColor" 
@@ -28,7 +35,7 @@
                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
 
                       <div class="font-bold">
-                        {{ transaction.amount }}
+                       {{new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL', signDisplay: 'never' }).format(transaction.amount) }}
                       </div>
                     </div>
 
@@ -39,7 +46,10 @@
                 </div>
 
                 <TransactionEdit
-                v-if="isUpdating" />
+                v-if="isUpdating" 
+                :transaction="transaction"
+                @update="onUpdate"
+                @cancel="isUpdating = false"/>
             </div>
 </template>
 
@@ -65,6 +75,10 @@
             };
         },
 
-        methods: {},
+        methods: {
+          onUpdate(transaction) {
+            this.$emit('update', transaction);
+          }
+        },
     };
 </script>

@@ -67,12 +67,35 @@ props: {
 },
 
 data() {
-    return {};
+    return {
+      localTransaction:{
+        date: this.transaction.date,
+        description: this.transaction.description,
+        amount: this.transaction.amount,
+        categoryId: this.transaction.category.id,
+
+      },
+      categories: [],
+    };
 },
 
+async fetch() {
+    this.categories = await this.$store.dispatch('categories/getCategories');
+  },
+
 methods: {
-    updateTransaction(context, {id, daat}) {
-        return undefined;
+    updateTransaction() {
+     
+        this.$stote.dispatch('transactions/updateTransaction', { id: this.transaction.id, data: this.localTransaction})
+        .then((response) => {
+          this.$emit('update', {
+            ...response,
+            category: this.categories.find(o => o.id == this.localTransaction.categoryId)
+          })
+        })
+    },
+    onCancel() {
+      this.$emit('cancel');
     }
 },
 }
