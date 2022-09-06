@@ -92,6 +92,7 @@ methods: {
             ...response,
             category: this.categories.find(o => o.id == this.localTransaction.categoryId)
           })
+          this.onCancel();
         })
     },
     onCancel() {

@@ -26,13 +26,17 @@
                        viewBox="0 0 24 24" 
                        xmlns="http://www.w3.org/2000/svg"></svg>
                       
-                      <svg class="w-4 h-4 text-red-600"
+                      <svg v-else class="w-4 h-4 text-red-600"
                        fill="none"
                        stroke="currentColor" 
                        viewBox="0 0 24 24" 
-                       xmlns="http://www.w3.org/2000/svg">
-                       
-                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path></svg>
+                       xmlns="http://www.w3.org/2000/svg"></svg>
+
+                       <div class="font-bold">
+                        {{ transaction.amount }}
+                       </div>
+                      </div>
+                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
 
                       <div class="font-bold">
                        {{new Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL', signDisplay: 'never' }).format(transaction.amount) }}
@@ -43,7 +47,7 @@
                       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
                   </div>
-                </div>
+                
 
                 <TransactionEdit
                 v-if="isUpdating" 
