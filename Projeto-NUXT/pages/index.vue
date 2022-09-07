@@ -19,7 +19,9 @@
          @cancel="isAdding = false"
          />
 
-        <TransactionFilter />
+        <TransactionFilter 
+          @filter="onFilter"
+        />
 
     <div class="mt-4">
       <div class="space-y-8">
@@ -54,7 +56,7 @@ import TransactionAdd from '~/components/Transactions/TransactionAdd.vue';
 import AppButton from '~/components/Ui/AppButton';
 import Transaction from '~/components/Transactions/Transaction.vue';
 import TransactionFilter from '~/components/Transactions/TransactionFilter.vue';
-import TransactionFilter from '~/components/Transactions/TransactionFilter.vue';
+
 
 export default {
   name: 'IndexPage',
@@ -64,7 +66,7 @@ export default {
     AppButton,
     Transaction,
     TransactionFilter,
-    TransactionFilter
+    
 },
 
   async asyncData({ store }) {
@@ -97,7 +99,13 @@ export default {
     onUpdate(transaction) {
       const idx = this.transactions.findIndex(o => o.id === transaction.id);
       this.transactions.splice(idx, 1, transaction)
-    }
+    },
+    onFilter(filter) {
+      this.$store.dispatch('transaction/getTransactions', filter)
+      .then((response) => {
+        this.transaction = response;
+      })
+    },
   },
 }
 </script>
